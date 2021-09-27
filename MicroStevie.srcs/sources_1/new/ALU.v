@@ -21,7 +21,7 @@
 
 
 module ALU# (
-    parameter DATA_WIDTH = 16
+    parameter DATA_WIDTH = 24
     )
     (
     input [DATA_WIDTH - 1:0] A,
@@ -31,8 +31,8 @@ module ALU# (
     output neg_flag
     );
     
-    assign C = out ? A - B : 'hz;
+    assign C = out ? B - A : 'hz;
     
-    assign neg_flag = C > 2**(DATA_WIDTH - 1) ? 1 : 0;
+    assign neg_flag = (C > 2**(DATA_WIDTH - 1)) | (C == 0) ? 1 : 0;
     
 endmodule

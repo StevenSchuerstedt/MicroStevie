@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Tue Jul 27 11:40:36 2021
+| Date         : Mon Sep 27 22:28:40 2021
 | Host         : DESKTOP-SR5PGCS running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     1 |
-|    Minimum number of control sets                        |     1 |
+| Total control sets                                       |   267 |
+|    Minimum number of control sets                        |   267 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |     4 |
+| Unused register locations in slices containing registers |    16 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     1 |
+| Total control sets |   267 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     2 |
 | >= 10 to < 12      |     0 |
-| >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     0 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     1 |
+| >= 16              |   262 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,10 +58,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               4 |            1 |
+| No           | No                    | No                     |              41 |           15 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |               0 |            0 |
+| No           | Yes                   | No                     |              27 |            7 |
+| Yes          | No                    | No                     |            6284 |         2671 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -70,10 +70,276 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+---------------+------------------+------------------+----------------+--------------+
-|  Clock Signal  | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+---------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG |               |                  |                1 |              4 |         4.00 |
-+----------------+---------------+------------------+------------------+----------------+--------------+
++-----------------------------------------------------------------+------------------------------------------------------------+------------------+------------------+----------------+--------------+
+|                           Clock Signal                          |                        Enable Signal                       | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++-----------------------------------------------------------------+------------------------------------------------------------+------------------+------------------+----------------+--------------+
+|  clk_slow_BUFG                                                  |                                                            |                  |                2 |              6 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/control_word_reg_reg[5]_0[0] |                  |                2 |              8 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/E[0]                         |                  |                3 |              8 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/Q[4]                         |                  |                3 |             12 |         4.00 |
+|  myMicroStevie/myControl_logic/control_word_reg_reg[17]_i_2_n_0 |                                                            |                  |                6 |             15 |         2.50 |
+|  clk_IBUF_BUFG                                                  |                                                            |                  |                7 |             20 |         2.86 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/Q[3]                         |                  |                3 |             24 |         8.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/control_word_reg_reg[1]_0[0] |                  |               24 |             24 |         1.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/Q[5]                         |                  |                3 |             24 |         8.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_15[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_17[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_3[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_77[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_2[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_30[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_7[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_8[0]                     |                  |               17 |             24 |         1.41 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_73[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_84[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_28[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_6[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_23[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_74[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_22[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_29[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_31[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_9[0]                     |                  |               19 |             24 |         1.26 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_7[0]                     |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_16[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_86[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_20[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_62[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_25[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_72[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_19[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_67[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_64[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_76[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_81[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_63[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_71[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_80[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_0[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_85[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_1[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_10[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_82[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_18[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_61[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_78[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_9[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_75[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_79[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_13[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_21[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_24[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_26[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_27[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_32[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_33[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_83[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_4[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_5[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_12[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_68[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_66[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_65[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_69[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_70[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_8[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_11[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[1]_14[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_26[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_3[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_18[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_14[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_1[0]                     |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_14[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_0[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_18[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_25[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_8[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_16[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_12[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_24[0]                    |                  |               19 |             24 |         1.26 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_11[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_17[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_0[0]                     |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_9[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_5[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_22[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_1[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_4[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_10[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_20[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_21[0]                    |                  |               21 |             24 |         1.14 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_23[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_27[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_4[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_19[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_2[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_11[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_24[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_rep_2[0]                 |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_25[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_15[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_2[0]                     |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_rep_1[0]                 |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_26[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_16[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_6[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_rep_3[0]                 |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_19[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_23[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_28[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_29[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_13[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_13[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_28[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_29[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_20[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_3[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_12[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_4[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_7[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_15[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_27[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_22[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[3]_5[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_10[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_0[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_17[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_1[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_2[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_21[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[2]_3[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_35[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_2[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_6[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_1[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_5[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_13[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_8[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_0[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_8[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_25[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_26[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_28[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_37[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_3[0]                     |                  |               17 |             24 |         1.41 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_23[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_36[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_11[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_3[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_9[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_0[0]                     |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_6[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_7[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_4[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_29[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_3[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_38[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_10[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_7[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_1[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_31[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_4[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_39[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_2[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_24[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_12[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_22[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_6[0]                     |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_8[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_11[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_1[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_9[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_14[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_4[0]                     |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_0[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_27[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[5]_9[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_5[0]                     |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_12[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_16[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_30[0]                    |                  |               20 |             24 |         1.20 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_19[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_2[0]                     |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_10[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_20[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_32[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_33[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_21[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_5[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_17[0]                    |                  |               17 |             24 |         1.41 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[6]_10[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_15[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_18[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[4]_7[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_34[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_40[0]                    |                  |               19 |             24 |         1.26 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_8[0]                     |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_5[0]                     |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_7[0]                     |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_6[0]                     |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[7]_9[0]                     |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_10[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_4[0]                     |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_40[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_41[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_18[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_19[0]                    |                  |                6 |             24 |         4.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_24[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_22[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_1[0]                     |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_16[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_11[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_20[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_21[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_23[0]                    |                  |               17 |             24 |         1.41 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_25[0]                    |                  |               17 |             24 |         1.41 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_27[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_0[0]                     |                  |               18 |             24 |         1.33 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_12[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_28[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_26[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_14[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_29[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_3[0]                     |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_30[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_31[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_33[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_13[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_34[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_35[0]                    |                  |                4 |             24 |         6.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_36[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_37[0]                    |                  |               16 |             24 |         1.50 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_38[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_32[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_15[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_17[0]                    |                  |               19 |             24 |         1.26 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_2[0]                     |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_39[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_46[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_48[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_52[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_59[0]                    |                  |               15 |             24 |         1.60 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_6[0]                     |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_51[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_60[0]                    |                  |               14 |             24 |         1.71 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_44[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_43[0]                    |                  |                5 |             24 |         4.80 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_49[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_45[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_47[0]                    |                  |               18 |             24 |         1.33 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_53[0]                    |                  |               10 |             24 |         2.40 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_42[0]                    |                  |                7 |             24 |         3.43 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_5[0]                     |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_54[0]                    |                  |                8 |             24 |         3.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_55[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_57[0]                    |                  |               11 |             24 |         2.18 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_50[0]                    |                  |                9 |             24 |         2.67 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_56[0]                    |                  |               12 |             24 |         2.00 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/register_reg[0]_58[0]                    |                  |               13 |             24 |         1.85 |
+|  clk_slow_BUFG                                                  | myMicroStevie/myControl_logic/Q[6]                         |                  |                3 |             24 |         8.00 |
+|  clk_IBUF_BUFG                                                  |                                                            | clear            |                7 |             27 |         3.86 |
+|  clk_slow_BUFG                                                  | myMicroStevie/mar/E[0]                                     |                  |               20 |             40 |         2.00 |
++-----------------------------------------------------------------+------------------------------------------------------------+------------------+------------------+----------------+--------------+
 
 

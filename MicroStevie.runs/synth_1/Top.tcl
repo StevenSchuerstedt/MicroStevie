@@ -72,6 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 1
 set_param xicom.use_bs_reader 1
+set_msg_config  -id {Synth 8-3332}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -87,7 +88,15 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/ALU.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/MicroStevie.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/control_logic.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/flags_register.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/ir_register.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/program_counter.v
   E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/ram.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/register.v
+  E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/sevenSegment.v
   E:/fpga_projects/MicroStevie/MicroStevie.srcs/sources_1/new/Top.v
 }
 OPTRACE "Adding files" END { }

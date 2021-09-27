@@ -2,8 +2,8 @@
 # Webtalk v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Aug  7 14:39:40 2021
-# Process ID: 5380
+# Start of session at: Mon Sep 27 20:26:04 2021
+# Process ID: 4928
 # Current directory: E:/fpga_projects/MicroStevie/MicroStevie.sim/sim_1/behav/xsim
 # Command line: wbtcv.exe -mode batch -source E:/fpga_projects/MicroStevie/MicroStevie.sim/sim_1/behav/xsim/xsim.dir/top_sim_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: E:/fpga_projects/MicroStevie/MicroStevie.sim/sim_1/behav/xsim/webtalk.log

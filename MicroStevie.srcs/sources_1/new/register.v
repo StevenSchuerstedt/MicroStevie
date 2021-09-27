@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module register# (
-    parameter DATA_WIDTH = 16
+    parameter DATA_WIDTH = 24
     )(
     input clk,
     input in,
@@ -18,6 +18,7 @@ module register# (
     
     initial begin
         register <= 0;
+        tmp_register <= 0;
     end
     
     always@(posedge clk) begin
