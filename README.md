@@ -1,5 +1,8 @@
 # MicroStevie
 
-A CPU build on FPGA
+MicroStevie is a OISC (One Instruction Set Computer).
 
-# Work in Progress
+- SUBLEQ Instruction
+- Vivado Verilog
+- for basys3 FPGA
+- see https://stevenschuerstedt.github.io/post/microstevie/
